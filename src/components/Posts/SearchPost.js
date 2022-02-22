@@ -95,7 +95,7 @@ const SearchPost = () => {
                                         as={Link}
                                         action
                                         to={`/tags/${tag.id_tag}`}
-                                        style={{color: 'black'}}
+                                        style={{ color: 'black' }}
                                     >
                                         <b>{tag.name}</b>
                                     </ListGroup.Item>
@@ -159,8 +159,8 @@ const SearchPost = () => {
                                 {post.length !== 0 ? (
                                     <div className="list-page">
                                         <ReactPaginate
-                                            previousLabel={<i class="fa fa-chevron-left "></i>}
-                                            nextLabel={<i class="fa fa-chevron-right"></i>}
+                                            previousLabel={<i className="fa fa-chevron-left "></i>}
+                                            nextLabel={<i className="fa fa-chevron-right"></i>}
                                             pageCount={pageCount}
                                             onPageChange={changePage}
                                             containerClassName={"pagination justify-content-center"}

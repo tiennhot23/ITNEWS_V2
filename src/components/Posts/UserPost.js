@@ -295,8 +295,8 @@ const UserPost = () => {
                                 {author.total_post > 0 ? (
                                     <div className="list-page">
                                         <ReactPaginate
-                                            previousLabel={<i class="fa fa-chevron-left "></i>}
-                                            nextLabel={<i class="fa fa-chevron-right"></i>}
+                                            previousLabel={<i className="fa fa-chevron-left "></i>}
+                                            nextLabel={<i className="fa fa-chevron-right"></i>}
                                             pageCount={pageCount}
                                             onPageChange={changePage}
                                             containerClassName={"pagination justify-content-center"}

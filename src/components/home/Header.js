@@ -100,7 +100,7 @@ const Header = ({
             <Navbar expand="md">
                 <Container fluid>
                     <Navbar.Brand>
-                        <label for='nav-mobile-input'>
+                        <label htmlFor='nav-mobile-input'>
                             {/* <Link to="/"> */}
                             <img
                                 className="title"

@@ -19,7 +19,7 @@ const MenuAdmin = () => {
                     <nav className='nav_pc flex-column flex-shrink-0 text-white bg-white'>
                         <h2 className="my-4 title_DM" style={{ color: '#084298' }} ><b>Danh mục</b></h2>
                         <ul className='nav_list nav nav-pills flex-column mb-auto'>
-                            <li class="nav-item">
+                            <li className="nav-item">
                                 <Link to="/" className="nav-link text-dark" >
                                     <span className='bi me-3'>
                                         <i className="fas fa-home"></i>
@@ -64,19 +64,19 @@ const MenuAdmin = () => {
                 </div>
 
                 <input type='checkbox' hidden name='' id='nav-mobile-input' className='nav_input'></input>
-                <label for='nav-mobile-input' className='nav_overplay'></label>
+                <label htmlFor='nav-mobile-input' className='nav_overplay'></label>
 
 
                 <nav className='nav_mobile d-flex flex-column flex-shrink-0 p-3 text-white'>
-                    <a href="/" className="d-flex align-items-center mb-1 mb-md-0 me-md-auto text-decoration-none">
+                    <Link to="/" className="d-flex align-items-center mb-1 mb-md-0 me-md-auto text-decoration-none">
                         {/* <svg class="bi me-2" width="40" height="32"></svg> */}
                         <Image src={itNewsIcon} style={{ width: '50px', height: '50px' }} className='title me-3' />
                         <span className="fs-4 text-dark">Danh mục</span>
-                    </a>
-                    <label for='nav-mobile-input' className="fas fa-times nav_bar-close"></label>
+                    </Link>
+                    <label htmlFor='nav-mobile-input' className="fas fa-times nav_bar-close"></label>
                     <hr />
                     <ul className='nav_mobile-list nav nav-pills flex-column mb-auto'>
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to="/" className="nav-link text-dark" >
                                 <span className='bi me-3'>
                                     <i className="fas fa-home"></i>

@@ -68,7 +68,7 @@ const SliderPost = () => {
                 //         </Card.Body>
                 //     </Card>
                 // </div>
-                <Carousel.Item>
+                <Carousel.Item key={index}>
                     <img
                         className="d-block"
                         src={image[index]}

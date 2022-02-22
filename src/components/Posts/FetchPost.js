@@ -25,8 +25,8 @@ const FetchPost = () => {
         .slice(pagesVisited, pagesVisited + todoPerPage)
         .map((post, index) => {
             return (
-                <Col lg={4} md={6}>
-                    <Card className="bg-light short-post" key={index}>
+                <Col lg={4} md={6} key={index}>
+                    <Card className="bg-light short-post" >
                         <Card.Body>
                             <Card.Title>
                                 <Link
@@ -74,8 +74,8 @@ const FetchPost = () => {
                 </div>
                 {displayTodo}
                 <ReactPaginate
-                    previousLabel={<i class="fa fa-chevron-left "></i>}
-                    nextLabel={<i class="fa fa-chevron-right"></i>}
+                    previousLabel={<i className="fa fa-chevron-left "></i>}
+                    nextLabel={<i className="fa fa-chevron-right"></i>}
                     pageCount={pageCount}
                     onPageChange={changePage}
                     containerClassName={"pagination justify-content-center"}
