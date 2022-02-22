@@ -1,0 +1,2 @@
+export const LOCAL_STORAGE_TOKEN_NAME = 'IT_NEWS';
+export const LOCAL_STORAGE_USER = 'ID_ACCOUNT';
