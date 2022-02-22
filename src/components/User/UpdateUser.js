@@ -4,7 +4,6 @@ import { updateUser } from "../../utils/callerAPI"
 import { toastError, toastSuccess } from "../.././Toast/Toast"
 import { useSelector, useDispatch } from "react-redux"
 import { userSelector, loadUser } from "../../reducers/User/loginForm"
-import itNewsIcon from "../.././assets/logo.png"
 import { useLocation } from "react-router-dom"
 import { Link } from "react-router-dom"
 

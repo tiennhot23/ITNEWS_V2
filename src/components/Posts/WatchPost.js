@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import MDEditor from "@uiw/react-md-editor"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Col, Card, Image, Button, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -59,15 +59,15 @@ const WatchPost = () => {
         dispatch(fetchMark(post.author.id_account))
     }, [dispatch, post])
 
-    const ScrollToTop = () => {
-        const { pathname } = useLocation()
+    // const ScrollToTop = () => {
+    //     const { pathname } = useLocation()
 
-        useEffect(() => {
-            window.scrollTo(0, 0, "smooth")
-        }, [pathname])
+    //     useEffect(() => {
+    //         window.scrollTo(0, 0, "smooth")
+    //     }, [pathname])
 
-        return null
-    }
+    //     return null
+    // }
 
     var date = post.post.day_last_modified.split("/")
 

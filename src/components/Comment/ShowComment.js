@@ -15,7 +15,7 @@ import { useParams } from "react-router"
 import { loadUser, userSelector } from "../../reducers/User/loginForm"
 import ShowCommentChildren from "./ShowCommentChildren"
 import CommentForm from "./CommentForm"
-import { useLocation } from "react-router-dom"
+// import { useLocation } from "react-router-dom"
 import { toastError } from "../.././Toast/Toast"
 
 const ShowComment = () => {
@@ -39,15 +39,15 @@ const ShowComment = () => {
         dispatch(loadComment(id_post))
     }, [dispatch, id_post])
 
-    const ScrollToTop = () => {
-        const { pathname } = useLocation()
+    // const ScrollToTop = () => {
+    //     const { pathname } = useLocation()
 
-        useEffect(() => {
-            window.scrollTo(0, document.body.scrollHeight - 1800, "smooth")
-        }, [pathname])
+    //     useEffect(() => {
+    //         window.scrollTo(0, document.body.scrollHeight - 1800, "smooth")
+    //     }, [pathname])
 
-        return null
-    }
+    //     return null
+    // }
     const onSubmitComment = (event) => {
         event.preventDefault()
         if (user.id_account === 0) {
