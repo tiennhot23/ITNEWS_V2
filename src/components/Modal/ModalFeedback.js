@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { readFeed } from "../../reducers/Feedback/fetchFeedback"
-import { loadUser } from "../../reducers/User/loginForm"
+// import { loadUser } from "../../reducers/User/loginForm"
 
 const ModalFeedback = ({ modal, setModal, readFeedback }) => {
     const dispatch = useDispatch()
@@ -17,9 +17,9 @@ const ModalFeedback = ({ modal, setModal, readFeedback }) => {
         email: " ",
     })
     const { id_feedback, subject, content } = feedback
-    useEffect(() => {
-        dispatch(loadUser())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(loadUser())
+    // }, [dispatch])
 
     useEffect(() => {
         setFeedback(readFeedback)

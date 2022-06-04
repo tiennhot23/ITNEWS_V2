@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { toastSuccess, toastError } from "../.././Toast/Toast"
 import axios from "axios"
-import setAuthToken from "../../utils/setAuthToken"
-import * as types from "../.././contains/types"
+// import setAuthToken from "../../utils/setAuthToken"
+// import * as types from "../.././contains/types"
 
 export const loadTags = createAsyncThunk(
     "tags/fetchTags",
@@ -53,23 +53,37 @@ export const loadTagsPost = createAsyncThunk(
 )
 
 export const addTag = createAsyncThunk("tags/addTag", async (tag) => {
-    setAuthToken(localStorage.getItem(types.LOCAL_STORAGE_TOKEN_NAME))
-    const response = await axios.post(
-        "https://itnews-api.herokuapp.com/api/v1/tag",
-        tag
-    )
-    return { ...response.data, status: response.status }
+    try {
+        const response = await axios.post(
+            "https://itnews-api.herokuapp.com/api/v2/tag", tag,
+            {
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+        )
+        if (response.status === 201) {
+            return await { ...response.data, status: response.status }
+        }
+    } catch (error) {
+        if (error.response.data) return error.response.data
+        else return { message: error.message }
+    }
 })
 
 export const updateTagAll = createAsyncThunk(
     "tags/updateTagAll",
-    async ({ id_tag, tag }) => {
+    async (tag) => {
+        const id_tag = tag.get('id_tag')
         try {
             const response = await axios.put(
-                `https://itnews-api.herokuapp.com/api/v1/tag/${id_tag}`,
+                `https://itnews-api.herokuapp.com/api/v2/tag/${id_tag}`,
                 tag
             )
             if (response.status === 200) {
+                console.log(response.data)
                 return await { ...response.data, status: response.status }
             }
         } catch (error) {

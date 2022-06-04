@@ -229,34 +229,40 @@ const PostAccess2 = () => {
                                             xem</b>
                                     </h4>
                                     <div>{displayTodo}</div>
-                                    <div className="list-page">
-                                        <ReactPaginate
-                                            previousLabel={<i className="fa fa-chevron-left "></i>}
-                                            nextLabel={<i className="fa fa-chevron-right"></i>}
-                                            pageCount={pageCount}
-                                            onPageChange={changePage}
-                                            containerClassName={"pagination justify-content-center"}
-                                            pageClassName={"page-item me-2"}
-                                            pageLinkClassName={"page-link"}
-                                            previousClassName={"page-item me-2"}
-                                            previousLinkClassName={"page-link"}
-                                            nextClassName={"page-item"}
-                                            nextLinkClassName={"page-link"}
-                                            breakClassName={"page-item me-2"}
-                                            breakLinkClassName={"page-link"}
-                                            disabledClassName={"paginationDisabled"}
-                                            activeClassName={"active"}
-                                            marginPagesDisplayed={1}
-                                            pageRangeDisplayed={2}
-                                        />
-                                    </div>
+
+                                    {
+                                        postAccess.length > 0 ? (
+                                            <div className="list-page">
+                                                <ReactPaginate
+                                                    previousLabel={<i className="fa fa-chevron-left "></i>}
+                                                    nextLabel={<i className="fa fa-chevron-right"></i>}
+                                                    pageCount={pageCount}
+                                                    onPageChange={changePage}
+                                                    containerClassName={"pagination justify-content-center"}
+                                                    pageClassName={"page-item me-2"}
+                                                    pageLinkClassName={"page-link"}
+                                                    previousClassName={"page-item me-2"}
+                                                    previousLinkClassName={"page-link"}
+                                                    nextClassName={"page-item"}
+                                                    nextLinkClassName={"page-link"}
+                                                    breakClassName={"page-item me-2"}
+                                                    breakLinkClassName={"page-link"}
+                                                    disabledClassName={"paginationDisabled"}
+                                                    activeClassName={"active"}
+                                                    marginPagesDisplayed={1}
+                                                    pageRangeDisplayed={2}
+                                                />
+                                            </div>
+                                        ) : <></>
+                                    }
+
                                 </Row>
                             </Col>
                             <InformationPost />
                         </Row>
                     </Col>
                 </Row>
-            </Container>
+            </Container >
             <Footer />
         </>
     )

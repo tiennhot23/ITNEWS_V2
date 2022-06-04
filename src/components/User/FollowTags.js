@@ -38,7 +38,7 @@ const FollowTags = () => {
         .slice(pagesVisited, pagesVisited + todoPerPage)
         .map((tag, index) => {
             return (
-                <Col xl={3} lg={4} md={4} sm={6}>
+                <Col xl={3} lg={4} md={4} sm={6} key={index}>
                     <Card
                         key={index}
                         style={{
@@ -133,35 +133,37 @@ const FollowTags = () => {
                                         {displayTodo}
                                     </Row>
                                 </div>
-
-                                <div className="list-page">
-                                    <ReactPaginate
-                                        previousLabel={<i className="fa fa-chevron-left "></i>}
-                                        nextLabel={<i className="fa fa-chevron-right"></i>}
-                                        pageCount={pageCount}
-                                        onPageChange={changePage}
-                                        containerClassName={"pagination justify-content-center"}
-                                        pageClassName={"page-item me-2"}
-                                        pageLinkClassName={"page-link"}
-                                        previousClassName={"page-item me-2"}
-                                        previousLinkClassName={"page-link"}
-                                        nextClassName={"page-item"}
-                                        nextLinkClassName={"page-link"}
-                                        breakClassName={"page-item me-2"}
-                                        breakLinkClassName={"page-link"}
-                                        disabledClassName={"paginationDisabled"}
-                                        activeClassName={"active"}
-                                        marginPagesDisplayed={1}
-                                        pageRangeDisplayed={2}
-                                    />
-                                </div>
-
+                                {
+                                    tags.length > 0 ? (
+                                        <div className="list-page">
+                                            <ReactPaginate
+                                                previousLabel={<i className="fa fa-chevron-left "></i>}
+                                                nextLabel={<i className="fa fa-chevron-right"></i>}
+                                                pageCount={pageCount}
+                                                onPageChange={changePage}
+                                                containerClassName={"pagination justify-content-center"}
+                                                pageClassName={"page-item me-2"}
+                                                pageLinkClassName={"page-link"}
+                                                previousClassName={"page-item me-2"}
+                                                previousLinkClassName={"page-link"}
+                                                nextClassName={"page-item"}
+                                                nextLinkClassName={"page-link"}
+                                                breakClassName={"page-item me-2"}
+                                                breakLinkClassName={"page-link"}
+                                                disabledClassName={"paginationDisabled"}
+                                                activeClassName={"active"}
+                                                marginPagesDisplayed={1}
+                                                pageRangeDisplayed={2}
+                                            />
+                                        </div>
+                                    ) : <></>
+                                }
                             </Col>
                             <InformationPost />
                         </Row>
                     </Col>
                 </Row>
-            </Container>
+            </Container >
             <Footer />
         </>
     )

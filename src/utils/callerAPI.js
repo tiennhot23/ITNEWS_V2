@@ -36,10 +36,10 @@ export const registerUser = async (registerForm) => {
     }
 }
 
-export const updateUser = async (id_account, updateForm) => {
+export const updateUser = async (updateForm) => {
     try {
         const response = await axios.put(
-            `https://itnews-api.herokuapp.com/api/v1/account/${id_account}`,
+            `https://itnews-api.herokuapp.com/api/v2/account/update/information`,
             updateForm
         )
         if (response.status === 200) {
@@ -250,6 +250,22 @@ export const addFeedback = async (data) => {
             data
         )
         if (response.status === 201) {
+            return await { ...response.data, status: response.status }
+        }
+    } catch (error) {
+        if (error.response.data) return error.response.data
+        else return { message: error.message }
+    }
+}
+
+
+export const updateImageUser = async (image) => {
+    try {
+        const response = await axios.put(
+            `https://itnews-api.herokuapp.com/api/v2/account/update/avatar`,
+            image
+        )
+        if (response.status === 200) {
             return await { ...response.data, status: response.status }
         }
     } catch (error) {

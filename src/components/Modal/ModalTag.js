@@ -2,18 +2,25 @@ import React, { useEffect, useState } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { addTag, updateTagAll } from "../../reducers/Tags/tags"
-import { loadUser } from "../../reducers/User/loginForm"
+// import { loadUser } from "../../reducers/User/loginForm"
 const ModalTag = ({ modal, setModal, updateTag }) => {
     const dispatch = useDispatch()
     const [tag, setTag] = useState({
         id_tag: 0,
-        name: "",
-        logo: "",
+        name: '',
+        logo: null
     })
-    const { id_tag, name, logo } = tag
-    useEffect(() => {
-        dispatch(loadUser())
-    }, [dispatch])
+
+    const [logo, setLogo] = useState({
+        selectedFile: null,
+    })
+    const { selectedFile } = logo
+
+    const { id_tag, name } = tag
+
+    // useEffect(() => {
+    //     dispatch(loadUser())
+    // }, [dispatch])
 
     useEffect(() => {
         setTag(updateTag)
@@ -25,24 +32,27 @@ const ModalTag = ({ modal, setModal, updateTag }) => {
             [event.target.name]: event.target.value,
         })
     }
-
+    const fileSelectedHandle = (event) => {
+        setLogo({
+            ...selectedFile,
+            selectedFile: event.target.files[0],
+        })
+    }
     const onSubmitTag = (event) => {
         event.preventDefault()
-        // console.log(tag)
         if (id_tag === 0) {
-            const tag = {
-                name: name,
-                logo: logo,
-            }
-            dispatch(addTag(tag))
+            const fd = new FormData()
+            fd.append('name', name)
+            fd.append('logo', selectedFile, selectedFile.name)
+            dispatch(addTag(fd))
         } else {
-            const tag = {
-                name: name,
-                logo: logo,
-            }
-            dispatch(updateTagAll({ id_tag, tag }))
-        }
+            const fd = new FormData()
+            fd.append('id_tag', id_tag)
+            fd.append('name', name)
+            fd.append('logo', selectedFile, selectedFile.name)
 
+            dispatch(updateTagAll(fd))
+        }
         setDialogModal()
     }
 
@@ -51,7 +61,6 @@ const ModalTag = ({ modal, setModal, updateTag }) => {
         setTag({
             id_tag: 0,
             name: "",
-            logo: "",
         })
     }
 
@@ -72,24 +81,21 @@ const ModalTag = ({ modal, setModal, updateTag }) => {
                                 aria-describedby="title-help"
                                 value={name}
                                 onChange={onChangeTag}
-                            /><br/>
+                            /><br />
                             {/* <Form.Text id="title-help" muted>
                                 Required
                             </Form.Text> */}
                         </Form.Group>
                         <Form.Group>
                             <Form.Control
-                                type="text"
+                                type="file"
                                 placeholder="Logo"
-                                name="logo"
+                                name="selectedFile"
                                 required
                                 aria-describedby="title-help"
-                                value={logo}
-                                onChange={onChangeTag}
-                            /><br/>
-                            {/* <Form.Text id="title-help" muted>
-                                Required
-                            </Form.Text> */}
+                                // value={selectedFile}
+                                onChange={fileSelectedHandle}
+                            /><br />
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>

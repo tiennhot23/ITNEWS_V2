@@ -18,6 +18,7 @@ const InformationPost = () => {
         dispatch(loadUser())
     }, [dispatch])
 
+
     return (
         <>
             <Col

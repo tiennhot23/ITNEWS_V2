@@ -58,10 +58,10 @@ const FetchUser = () => {
             reply_to: "",
         }
         send(
-            "service_woxhrip",
-            "unLook_user",
+            "service_dukxn3m",
+            "template_unLock_user",
             emailLock,
-            "user_0NSPE5iErE5d2qdzLnEoU"
+            "sGtIKVX-3KqLsed8L"
         )
             .then((response) => {
                 console.log("SUCCESS!", response.status, response.text)

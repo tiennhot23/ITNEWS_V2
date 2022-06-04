@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { addImage, updateImage } from "../../reducers/Image/image"
-import { loadUser } from "../../reducers/User/loginForm"
+// import { loadUser } from "../../reducers/User/loginForm"
 
 const ModalImageUser = ({ modal, setModal, updateImg }) => {
     const dispatch = useDispatch()
@@ -15,9 +15,9 @@ const ModalImageUser = ({ modal, setModal, updateImg }) => {
     })
     const { selectedFile } = image
 
-    useEffect(() => {
-        dispatch(loadUser())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(loadUser())
+    // }, [dispatch])
 
     useEffect(() => {
         setId(updateImg)

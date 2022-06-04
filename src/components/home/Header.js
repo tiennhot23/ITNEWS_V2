@@ -65,9 +65,9 @@ const Header = ({
                 <Dropdown.Item as={Link} to="/change/password">
                     Thay đổi mật khẩu
                 </Dropdown.Item>
-                <Dropdown.Item as={Link} to={`/u/${real_name}/image`}>
+                {/* <Dropdown.Item as={Link} to={`/u/${real_name}/image`}>
                     Quản lý ảnh
-                </Dropdown.Item>
+                </Dropdown.Item> */}
                 <Dropdown.Item as={Link} to={`/u/${real_name}/feedback`}>
                     Phản hồi
                 </Dropdown.Item>
@@ -124,7 +124,7 @@ const Header = ({
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                 />
-                                <Button type='submit' id="dropdown-basic2" className="btn_search"> <span style={{ color: 'white'}}>
+                                <Button type='submit' id="dropdown-basic2" className="btn_search"> <span style={{ color: 'white' }}>
                                     <i className="fas fa-search"></i>
                                 </span></Button>
                             </Form>

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
-import { send } from "emailjs-com"
+// import { sendForm } from "emailjs-com"
+import { send } from '@emailjs/browser'
 import { useDispatch } from "react-redux"
 import { limitedTimeLock, permanentLock } from "../../reducers/Author/author"
 import { toastError } from "../../Toast/Toast"
@@ -27,10 +28,10 @@ const ModalAdmin = ({ modal, setModal, getUser }) => {
             reply_to: "",
         }
         send(
-            "service_woxhrip",
-            "lock_user",
+            "service_dukxn3m",
+            "template_lock_user",
             emailLock,
-            "user_0NSPE5iErE5d2qdzLnEoU"
+            "sGtIKVX-3KqLsed8L"
         )
             .then((response) => {
                 console.log("SUCCESS!", response.status, response.text)
@@ -64,9 +65,9 @@ const ModalAdmin = ({ modal, setModal, getUser }) => {
                     hours_lock: 1,
                 })
                 setModal(false)
-            } catch (error) {}
+            } catch (error) { }
         } else {
-            if (getUser.id_role >= 2){
+            if (getUser.id_role >= 2) {
                 toastError('Bạn không có quyền!')
                 return
             }
@@ -86,7 +87,7 @@ const ModalAdmin = ({ modal, setModal, getUser }) => {
                     hours_lock: 1,
                 })
                 setModal(false)
-            } catch (error) {}
+            } catch (error) { }
         }
     }
     const { reason, lock, hours_lock } = lockUser

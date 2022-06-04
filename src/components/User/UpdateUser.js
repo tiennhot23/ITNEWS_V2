@@ -2,21 +2,17 @@ import React, { useState, useEffect } from "react"
 import { Image } from "react-bootstrap"
 import { updateUser } from "../../utils/callerAPI"
 import { toastError, toastSuccess } from "../.././Toast/Toast"
-import { useSelector, useDispatch } from "react-redux"
-import { userSelector, loadUser } from "../../reducers/User/loginForm"
+import { useDispatch } from "react-redux"
+import { loadUser } from "../../reducers/User/loginForm"
 import { useLocation } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 const UpdateUser = () => {
-    const user = useSelector(userSelector)
     const dispatch = useDispatch()
-
     const location = useLocation()
-
-    useEffect(() => {
-        dispatch(loadUser())
-    }, [dispatch])
-
+    const [image, setImage] = useState({
+        selectedFile: null,
+    })
     const [formUpdateUser, setUpdateUser] = useState({
         real_name: location.state.real_name,
         birth: location.state.birth,
@@ -25,6 +21,18 @@ const UpdateUser = () => {
         phone: location.state.phone,
         avatar: location.state.avatar,
     })
+    const { selectedFile } = image
+    const { real_name, birth, company, phone, avatar, gender } = formUpdateUser
+
+    useEffect(() => {
+        return () => {
+            avatar && URL.revokeObjectURL(avatar.preview)
+        }
+    }, [avatar])
+
+    useEffect(() => {
+        dispatch(loadUser())
+    }, [dispatch])
 
     const [frmGender, setGender] = useState(location.state.gender)
 
@@ -35,26 +43,56 @@ const UpdateUser = () => {
         })
     }
 
+    const fileSelectedHandle = (event) => {
+        setImage({
+            ...selectedFile,
+            selectedFile: event.target.files[0],
+        })
+
+        const file = event.target.files[0]
+        file.preview = URL.createObjectURL(file)
+        setUpdateUser({
+            ...formUpdateUser,
+            avatar: file.preview
+        })
+    }
     const onSubmitUpdateUser = async (event) => {
         event.preventDefault()
         formUpdateUser.gender = frmGender
-        console.log(formUpdateUser)
+        // const data = {
+        //     real_name,
+        //     birth,
+        //     company,
+        //     phone,
+        //     gender
+        // }
+        const fd = new FormData()
+        fd.append('real_name', real_name)
+        fd.append('birth', birth)
+        fd.append('company', company)
+        fd.append('phone', phone)
+        fd.append('gender', gender)
+        fd.append('avatar', selectedFile, selectedFile.name)
+
         try {
             // setAuthToken(localStorage.getItem(types.LOCAL_STORAGE_TOKEN_NAME))
-            const updateDataUser = await updateUser(
-                user.id_account,
-                formUpdateUser
-            )
+            const updateDataUser = await updateUser(fd)
             if (updateDataUser.status === 200) {
                 toastSuccess(updateDataUser.message)
             } else {
                 toastError(updateDataUser.message)
             }
+            // const updateImage = await updateImageUser(fd)
+            // if (updateImage.status === 200) {
+            //     toastSuccess(updateImage.message)
+            // } else {
+            //     toastError(updateImage.message)
+            // }
         } catch (error) {
             console.log(error)
         }
     }
-    const { real_name, birth, company, phone, avatar } = formUpdateUser
+    // const { real_name, birth, company, phone, avatar } = formUpdateUser
     return (
         <>
             <div className="wapper">
@@ -74,7 +112,7 @@ const UpdateUser = () => {
                                 <Image
                                     src={avatar}
                                     roundedCircle
-                                    style={{ width: "8rem" }}
+                                    style={{ width: "8rem", height: '8rem' }}
                                     alt="avatar"
                                 />
                                 {/* <input type="file" style={{ width: "8rem" }} /> */}
@@ -89,6 +127,7 @@ const UpdateUser = () => {
                                     </i>
                                 </label>
                                 <input
+                                    required
                                     type="text"
                                     className="item-input"
                                     id="updateInfo-input1"
@@ -108,13 +147,13 @@ const UpdateUser = () => {
                                     </i>
                                 </label>
                                 <input
-                                    type="text"
+                                    required
+                                    type="file"
                                     className="item-input"
                                     id="updateInfo-input2"
                                     placeholder="Đường dẫn ảnh của bạn"
-                                    name="avatar"
-                                    value={avatar}
-                                    onChange={onChangeUpdateUser}
+                                    name="image"
+                                    onChange={fileSelectedHandle}
                                 />
                             </div>
                             <div id="input3">
