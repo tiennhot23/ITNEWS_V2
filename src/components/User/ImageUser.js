@@ -51,12 +51,12 @@ const ImageUser = () => {
                 <tr key={index}>
                     <td>
                         <Image
-                            src={`https://itnews-api.herokuapp.com/api/v1/image/${image.id_image}`}
+                            src={`http://localhost:8080/api/v2/image/${image.id_image}`}
                             style={{ width: "4rem", height: "4rem" }}
                         />
                     </td>
                     <td>
-                        https://itnews-api.herokuapp.com/api/v1/image/
+                        http://localhost:8080/api/v2/image/
                         {image.id_image}
                     </td>
                     <td
@@ -71,7 +71,7 @@ const ImageUser = () => {
                             style={{ margin: "21px" }}
                             onClick={() => {
                                 navigator.clipboard.writeText(
-                                    `https://itnews-api.herokuapp.com/api/v1/image/${image.id_image}`
+                                    `http://localhost:8080/api/v2/image/${image.id_image}`
                                 )
                             }}
                         >
