@@ -159,7 +159,7 @@ const tags = createSlice({
         }
       })
       .addCase(addTag.fulfilled, (state, action) => {
-        if (action.payload.status === 201) {
+        if (action.payload.status === 201 || action.payload.status === 200) {
           state.tagsAll.unshift(action.payload.data)
           toastSuccess(action.payload.message)
         } else {

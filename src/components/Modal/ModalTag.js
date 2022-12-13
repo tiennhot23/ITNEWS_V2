@@ -49,7 +49,7 @@ const ModalTag = ({ modal, setModal, updateTag }) => {
             const fd = new FormData()
             fd.append('id_tag', id_tag)
             fd.append('name', name)
-            fd.append('logo', selectedFile, selectedFile.name)
+            if (selectedFile) fd.append('logo', selectedFile, selectedFile.name)
 
             dispatch(updateTagAll(fd))
         }
@@ -91,7 +91,7 @@ const ModalTag = ({ modal, setModal, updateTag }) => {
                                 type="file"
                                 placeholder="Logo"
                                 name="selectedFile"
-                                required
+                                required={id_tag ? false : true}
                                 aria-describedby="title-help"
                                 // value={selectedFile}
                                 onChange={fileSelectedHandle}

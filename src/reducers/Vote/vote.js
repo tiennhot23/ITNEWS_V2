@@ -101,7 +101,7 @@ const vote = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(voteUp.fulfilled, (state, action) => {
-        if (action.payload.status === 201) {
+        if (action.payload.status === 201 || action.payload.status === 200) {
           state.vote = 1
           state.vote_post += 1
           state.mark.mark += 1
@@ -111,7 +111,7 @@ const vote = createSlice({
         }
       })
       .addCase(voteDown.fulfilled, (state, action) => {
-        if (action.payload.status === 201) {
+        if (action.payload.status === 201 || action.payload.status === 200) {
           state.vote = -1
           state.vote_post -= 1
           state.mark.mark -= 1

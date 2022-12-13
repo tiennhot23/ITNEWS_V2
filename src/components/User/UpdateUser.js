@@ -147,7 +147,7 @@ const UpdateUser = () => {
                                     </i>
                                 </label>
                                 <input
-                                    required
+                                    required={real_name ? false : true}
                                     type="file"
                                     className="item-input"
                                     id="updateInfo-input2"

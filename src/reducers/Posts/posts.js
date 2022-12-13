@@ -196,7 +196,7 @@ const posts = createSlice({
         }
       })
       .addCase(addPost.fulfilled, (state, action) => {
-        if (action.payload.status === 201) {
+        if (action.payload.status === 201 || action.payload.status === 200) {
           toastSuccess(action.payload.message)
         } else {
           toastError(action.payload.message)

@@ -14,7 +14,7 @@ const ForgotPassword = () => {
         const response = await forgotPassword(account_name)
         if (response.status === 200) {
             toastSuccess(response.message)
-            localStorage.setItem(types.LOCAL_STORAGE_USER, response.id_account)
+            localStorage.setItem(types.LOCAL_STORAGE_USER, response.data.id_account)
             history.push("/forgot/password/code")
         } else {
             toastError(response.message)

@@ -42,7 +42,8 @@ const ChangePassword = () => {
                 new_password: new_password,
             }
             const changePass = await changePassword(data)
-            toastSuccess(changePass.message)
+            if (changePass.status === 200) toastSuccess(changePass.message)
+            else toastError(changePass.message)
         } catch (error) {
             console.log(error)
             toastError(error)
